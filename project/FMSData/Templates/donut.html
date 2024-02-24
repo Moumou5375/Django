@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<center><h1>ปีปฏิทิน</h1></center>
+ <div>
+    <canvas id="myChart"></canvas>
+ </div>
+  
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+ <script>
+    const ctx = document.getElementById('myChart');
+  
+    const mixedChart = new Chart(ctx, {
+      data: {
+        datasets: [{
+          type: 'bar',
+          label:'จำนวนงานประชุมต่อปี',
+          data: {{number_list|safe}},
+          backgroundColor: ['#006EBC','#01A6BA','#75C095','#F1DD6A','#FF8F7F','#DC493F','#AF601A'],
+          borderColor: ['#006EBC','#01A6BA','#75C095','#F1DD6A','#FF8F7F','#DC493F','#AF601A'],
+          borderWidth: 1
+        },{
+          type:'line',
+          label:'จำนวนงานประชุมต่อปี',
+          data: {{number_list|safe}},
+          fill:false,
+          backgroundColor: ['#808B96'],
+          borderColor: ['#808B96']
+        }],
+        labels: {{Calendar_list|safe}}
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+ </script>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<center><h1>จำนวนฐานข้อมูลวารสารจำแนกตามประเภท</h1></center>
+ <div>
+    <canvas id="myChart"></canvas>
+ </div>
+  
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+ <script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: {{individual_list|safe}},
+        datasets: [{
+          label:'จำนวนฐานข้อมูลวารสารจำแนกตามประเภท',
+          data: {{number_list|safe}},
+          backgroundColor: ['#4EE2EC','#FF8400','#C11B17','#BDF516','#BF00FF','#0431B4','#04B486','#9B59B6'],
+          borderColor: ['#4EE2EC','#FF8400','#C11B17','#BDF516','#BF00FF','#0431B4','#04B486','#9B59B6'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+ </script>
+
+{% endblock %}

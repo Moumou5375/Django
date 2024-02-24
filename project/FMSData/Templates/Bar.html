@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<center><h1>จำนวนผลงานตีพิมพ์แยกตามประเภท</h1></center>
+ <div>
+    <canvas id="myChart"></canvas>
+ </div>
+  
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+ <script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: {{Release_type_list|safe}},
+        datasets: [{
+          axis: 'y',
+          label:'จำนวนผลงานต่อชิ้น',
+          data: {{number_list|safe}},
+          fill: false,
+          backgroundColor: ['#4EE2EC','#FF8400','#C11B17','#BDF516'],
+          borderColor: ['#4EE2EC','#FF8400','#C11B17','#BDF516'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+ </script>
+  
+  
+{% endblock %}

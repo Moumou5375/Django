@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<center><h1>จำนวนนักศึกษาจำแนกตามหลักสูตร</h1></center>
+ <div>
+    <canvas id="myChart"></canvas>
+ </div>
+  
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+ <script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: {{Progress_list|safe}},
+        datasets: [{
+          label:'จำนวนนักศึกษาต่อหลักสูตร',
+          data: {{number_list|safe}},
+          backgroundColor: ['#FFF3D7','#F6C6C7','#FCEE9E','#92CEA8','#8BD2EC','#E8CFF8','#7F867B'],
+          borderColor: ['#FFF3D7','#F6C6C7','#FCEE9E','#92CEA8','#8BD2EC','#E8CFF8','#7F867B'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+ </script>
+
+{% endblock %}
